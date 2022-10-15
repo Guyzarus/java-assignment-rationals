@@ -1,9 +1,10 @@
 package com.cooksys.ftd.assignments.objects;
 
-import com.cooksys.ftd.assignments.objects.util.MissingImplementationException;
-
 public class Rational implements IRational {
-    /**
+    private int numerator;
+	private int denominator;
+
+	/**
      * Constructor for rational values of the type:
      * <p>
      * `numerator / denominator`
@@ -14,24 +15,33 @@ public class Rational implements IRational {
      * @param denominator the denominator of the rational value
      * @throws IllegalArgumentException if the given denominator is 0
      */
-    public Rational(int numerator, int denominator) throws IllegalArgumentException {
-        throw new MissingImplementationException();
-    }
+	public Rational(int numerator, int denominator) throws IllegalArgumentException {
+		if (denominator == 0) {
+			throw new IllegalArgumentException();
+
+		}
+		this.numerator = numerator;
+		this.denominator = denominator;
+		
+	}
 
     /**
      * @return the numerator of this rational number
      */
     @Override
-    public int getNumerator() {
-        throw new MissingImplementationException();
-    }
+	public int getNumerator() {
+
+		return this.numerator;
+
+	}
 
     /**
      * @return the denominator of this rational number
      */
     @Override
     public int getDenominator() {
-        throw new MissingImplementationException();
+		return this.denominator;
+        
     }
 
     /**
@@ -46,9 +56,13 @@ public class Rational implements IRational {
      * @throws IllegalArgumentException if the given denominator is 0
      */
     @Override
-    public Rational construct(int numerator, int denominator) throws IllegalArgumentException {
-        throw new MissingImplementationException();
-    }
+	public Rational construct(int numerator, int denominator) throws IllegalArgumentException {
+		if (denominator == 0) {
+			throw new IllegalArgumentException();
+
+		}
+		return new Rational(numerator, denominator);
+	}
 
     /**
      * @param obj the object to check this against for equality
@@ -58,7 +72,14 @@ public class Rational implements IRational {
      */
     @Override
     public boolean equals(Object obj) {
-        throw new MissingImplementationException();
+		if (obj instanceof Rational) {
+			Rational newRational = (Rational) obj;
+			return newRational.numerator == this.numerator && newRational.denominator == this.denominator;
+			
+		}
+    	
+    	return false;
+        
     }
 
     /**
@@ -68,8 +89,16 @@ public class Rational implements IRational {
      *
      * @return a string representation of this rational value
      */
-    @Override
-    public String toString() {
-        throw new MissingImplementationException();
-    }
+	@Override
+	public String toString() {
+		if ((getNumerator() < 0 && getDenominator() < 0 || getNumerator() > 0 && getDenominator() > 0)) {
+
+			return Math.abs(getNumerator()) + "/" + Math.abs(getDenominator());
+
+		} else if (getNumerator() < 0 || getDenominator() < 0) {
+
+		}
+		return "-" + Math.abs(getNumerator()) + "/" + Math.abs(getDenominator());
+
+	}
 }
