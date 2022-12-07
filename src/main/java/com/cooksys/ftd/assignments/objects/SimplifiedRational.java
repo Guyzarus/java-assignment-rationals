@@ -1,10 +1,8 @@
 package com.cooksys.ftd.assignments.objects;
 
 public class SimplifiedRational implements IRational {
-    private int numerator;
+	private int numerator;
 	private int denominator;
-    
-	
 	
 	/**
      * Determines the greatest common denominator for the given values
